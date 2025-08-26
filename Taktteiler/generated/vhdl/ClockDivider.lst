@@ -1,0 +1,3 @@
+generated/vhdl/pkg_enum.vhd
+generated/vhdl/pkg_scala2hdl.vhd
+generated/vhdl/ClockDivider.vhd

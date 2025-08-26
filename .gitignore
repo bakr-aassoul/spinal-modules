@@ -1,0 +1,16 @@
+# sbt/scala build junk
+target/
+project/target/
+project/project/
+
+# simulation junk
+simWorkspace/
+tmp/
+
+# OS junk
+.DS_Store
+
+# generated HDL: commit only if you want
+generated/*
+!generated/verilog/
+!generated/vhdl/
