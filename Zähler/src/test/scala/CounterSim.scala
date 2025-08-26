@@ -4,12 +4,25 @@ import spinal.core.sim._
 
 object CounterSim {
   def main(args: Array[String]): Unit = {
-    SimConfig.withVcdWave.compile(new Counter(4)).doSim { dut =>
-      dut.clockDomain.forkStimulus(10)
-      dut.io.reset #= true;  dut.io.enable #= false; dut.clockDomain.waitSampling()
-      dut.io.reset #= false; dut.io.enable #= true
-      for (_ <- 0 until 8) dut.clockDomain.waitSampling()
-      simSuccess()
-    }
+    SimConfig
+      .withVcdWave                // produce VCD for GTKWave
+      .compile(new Counter(4))
+      .doSim { dut =>
+        dut.clockDomain.forkStimulus(10)
+
+        dut.io.reset  #= true
+        dut.io.enable #= false
+        dut.clockDomain.waitSampling()
+
+        dut.io.reset  #= false
+        dut.io.enable #= true
+
+        for (_ <- 0 until 8) {
+          dut.clockDomain.waitSampling()
+          println(s"Zählerwert = ${dut.io.value.toBigInt}")
+        }
+
+        simSuccess()
+      }
   }
 }
