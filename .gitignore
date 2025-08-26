@@ -7,3 +7,14 @@
 **/.sbt/
 .DS_Store
 *.lst
+**/target/
+**/project/target/
+**/project/project/
+**/simWorkspace/
+**/tmp/
+**/.cache/
+**/.sbt/
+**/.ivy2/
+**/.coursier/
+.DS_Store
+*.lst
