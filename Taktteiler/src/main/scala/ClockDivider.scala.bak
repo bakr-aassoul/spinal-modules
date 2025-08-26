@@ -5,17 +5,15 @@ class ClockDivider(divisorWidth: Int) extends Component {
   setDefinitionName("ClockDivider")
 
   val io = new Bundle {
-    val clkOut   = out Bool()
-    val counterO = out UInt(divisorWidth bits)   // <-- expose internal counter
+    val clkOut = out Bool()
   }
 
+  // Zähler läuft kontinuierlich
   val counter = Reg(UInt(divisorWidth bits)) init(0)
   counter := counter + 1
 
-  io.clkOut   := counter.msb
-  io.counterO := counter
+  // höchstwertiges Bit als geteiltes Taktsignal
+  io.clkOut := counter.msb
 
-  // nicer names in the wave viewer
   io.clkOut.setName("clkOut")
-  io.counterO.setName("counter")
 }
